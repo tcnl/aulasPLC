@@ -35,5 +35,32 @@ vendas 3 = 9
 
 totalVendas :: Int -> Int
 totalVendas n 
-    | n == 0 = vendas 0
-    | otherwise = vendas n + totalVendas (n - 1)
+    | n == 0 = vendas 0 -- caso base
+    | otherwise = vendas n + totalVendas (n - 1) -- caso recursivo
+
+maxVendas :: Int -> Int
+maxVendas n
+    | n == 0 = vendas 0 -- caso base
+    | otherwise = maxIf (vendas n) (maxVendas (n - 1)) -- caso recursivo
+
+-- casamento de padrão
+
+totalVendas2 :: Int -> Int
+totalVendas2 0 = vendas 0
+totalVendas2 n = vendas n + (totalVendas2 (n-1))
+
+mynot :: Bool -> Bool
+mynot True = False
+mynot False = True
+
+myAnd :: Bool -> Bool -> Bool
+myAnd True True = True
+myAnd True False = False
+myAnd False True = False
+myAnd False False = False
+
+myAnd2 :: Bool -> Bool -> Bool
+myAnd2 True x = x
+-- myAnd2 False x = False
+myAnd2 False _ = False -- o _ (underline) torna o argumento indiferente
+
