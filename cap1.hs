@@ -64,3 +64,7 @@ myAnd2 True x = x
 -- myAnd2 False x = False
 myAnd2 False _ = False -- o _ (underline) torna o argumento indiferente
 
+-- 23/08/2018
+
+
+
