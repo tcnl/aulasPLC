@@ -66,5 +66,34 @@ myAnd2 False _ = False -- o _ (underline) torna o argumento indiferente
 
 -- 23/08/2018
 
+-- 04/09/2018
+-- LISTAS: 
+-- - são sempre valores do mesmo tipo
+-- - os valores. são sempre escritos entre colchetes
+-- *Main> 1 : 2 : 3 : []
+-- [1,2,3]
+-- *Main> 1 : 2 : [3]
+-- [1,2,3]
+-- *Main> [1 .. 7]
+-- [1,2,3,4,5,6,7]
+-- *Main> ['a' .. 'z']
+-- "abcdefghijklmnopqrstuvwxyz"
+-- *Main> [1, 2 .. 20]
+-- [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+-- *Main> [1, 3 .. 30]
+-- [1,3,5,7,9,11,13,15,17,19,21,23,25,27,29]
+-- *Main> [2.8, 3.5 .. 9]
+-- [2.8,3.5,4.2,4.9,5.6000000000000005,6.300000000000001,7.000000000000001,7.700000000000001,8.400000000000002,9.100000000000003]
+
+somaLista :: [Int] -> Int
+-- caso base
+somaLista [] = 0
+-- caso recursivo: lista tem cabeça e cauda
+somaLista (x:xs) = x + somaLista xs
+
+-- dobrar elementos de uma lista
+double :: [Int] -> [Int]
+double [] = []
+double (x:xs) = (2 * x) : double xs
 
 
