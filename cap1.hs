@@ -96,4 +96,21 @@ double :: [Int] -> [Int]
 double [] = []
 double (x:xs) = (2 * x) : double xs
 
+-- saber se um elemento pertence a uma lista
+member :: [Int] -> Int -> Bool
+member [] n = False
+member (x:xs) n = (x == n) || member xs n
 
+-- é dígito
+ehDigito :: Char -> Bool
+ehDigito ch = (ch >= '0') && (ch <= '9')
+
+digits :: [Char] -> [Char]
+digits [] = []
+digits (x:xs)
+  | ehDigito x = x : digits xs
+  | otherwise = digits xs
+
+somaParesLista :: [(Int, Int)] -> [Int]
+somaParesLista [] = []
+somaParesLista ((a,b):xs) = (a+b) : somaParesLista xs
