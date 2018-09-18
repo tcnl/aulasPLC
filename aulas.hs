@@ -294,3 +294,69 @@ filtro f [] = []
 filtro f (x:xs)
   | f x = x: filtro f xs
   | otherwise = filtro f xs 
+
+
+-----------------------------------------------------------------------------
+-- 13/09/2018
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+-- 18/09/2018
+-----------------------------------------------------------------------------
+inc' :: Int -> Int
+inc' x = x + 1
+
+twice :: (t -> t) -> t -> t
+twice f x = f (f x)
+
+-- *Main> twice inc 1
+-- 3
+
+iter :: Int -> (Int -> Int) -> (Int -> Int)
+iter 0 f = id
+iter n f = (iter (n-1) f) . f
+
+-- *Main> (iter 3 inc) 0
+-- 3
+{-
+iter 3 inc
+= (iter 2 inc) . inc
+= ((iter 1 inc). inc ). inc
+= (((iter 0 inc) . inc). inc).inc
+=((id . inc). inc). inc
+-}
+
+-- Notação lambda
+{-
+Inc : (\x -> x + 1)
+
+*Main> (\x -> x + 1) 3
+4
+*Main> (\x y -> x + y) 3 8
+11
+-}
+
+addNum n= (\m -> m + n)
+-- *Main> :t addNum
+-- addNum :: Num a => a -> a -> a
+-- *Main> :t addNum 2
+-- addNum 2 :: Num a => a -> a
+
+-- *Main> (+) 2 3
+-- 5
+-- *Main> ((+) 2) 5
+-- 7
+
+multiplica :: Int -> Int -> Int
+multiplica m n = m * n
+-- *Main> multiplica 4 3
+-- 12
+-- *Main> map (multiplica 2) [20 .. 25]
+-- [40,42,44,46,48,50]
+
+tresIguais :: Int -> Int -> Int -> Bool
+tresIguais m n p = (m == n) && (n == p)
+-- *Main> tresIguais 2 3 4
+-- False
+-- *Main> ((tresIguais 2) 3) 4
+-- False
