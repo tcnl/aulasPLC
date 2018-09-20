@@ -360,3 +360,9 @@ tresIguais m n p = (m == n) && (n == p)
 -- False
 -- *Main> ((tresIguais 2) 3) 4
 -- False
+
+inc1Lista1 l = map inc l
+inc1Lista1_2 l = map (\x -> x + 1) l
+f1 l = (filter (\y -> y > 15). map (\x ->))
+
+mzipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
