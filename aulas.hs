@@ -363,6 +363,119 @@ tresIguais m n p = (m == n) && (n == p)
 
 inc1Lista1 l = map inc l
 inc1Lista1_2 l = map (\x -> x + 1) l
-f1 l = (filter (\y -> y > 15). map (\x ->))
+-- f1 l = (filter (\y -> y > 15). map (\x ->))
 
-mzipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
+
+-----------------------------------------------------------------------------
+-- 20/09/2018
+-----------------------------------------------------------------------------
+
+-- *Main> (map.filter) (>5) [[1..7],[7..24]]
+-- [[6,7],[7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]]
+
+-- type Sinonimo = Tipo
+
+type Nome = String
+
+-- Tipos algebricos (data)
+
+-- Enumeração
+data Mbool = MTrue | MFalse
+
+data DiasSemana = Dom | Seg | Ter | Qua | Qui | Sex | Sab
+
+data Estacao = Verao | Outono | Inverno | Primavera
+
+data Temperatura = Frio | Quente deriving Show
+
+-- clima :: Estacao -> Temperatura
+-- clima Verao = Quente
+-- clima Outono = Quente
+
+-- clima Primavera = Quente
+
+clima :: Estacao -> Temperatura
+clima Inverno = Frio
+clima _ = Quente
+
+-- *Main> clima Verao
+-- Quente
+
+-- Produto
+
+type Idade = Int
+data Pessoas = Pessoa Nome Idade deriving Show
+-- *Main> :t Pessoa "Maria" 15
+-- Pessoa "Maria" 15 :: Pessoas
+
+exibirNome :: Pessoas -> String
+exibirNome (Pessoa n i) = n
+-- *Main> exibirNome (Pessoa "Maria" 15)
+-- "Maria"
+
+data Figura =   Circulo Float
+                | Retangulo Float Float deriving Show
+
+area :: Figura -> Float
+area (Circulo r) = pi * r * r
+area (Retangulo l h) = l * h
+-- *Main> area (Circulo 2.0)
+-- 12.566371
+-- *Main> area (Retangulo 2.0 3.7)
+-- 7.4
+
+ehCircular :: Figura -> Bool
+ehCircular (Circulo _) = True
+ehCircular _ = False
+-- *Main> ehCircular (Circulo 2.0)
+-- True
+-- *Main> ehCircular (Retangulo 2.0 3.7)
+-- False
+
+data Expr = Lit Int
+    | Add Expr Expr
+    | Sub Expr Expr deriving Show
+
+eval :: Expr -> Int
+eval (Lit n) = n
+eval (Add exp1 exp2) = 
+        eval exp1 + eval exp2
+eval (Sub exp1 exp2) = 
+        eval exp1 - eval exp2
+
+-- *Main> eval (Add (Sub (Lit 5) (Lit 3)) (Lit 2))
+-- 4
+
+exibirExp :: Expr -> String
+exibirExp (Lit n) = show n
+exibirExp (Add e1 e2) =
+    "( " ++ exibirExp e1 ++ " + " ++ exibirExp e2 ++ " )"
+exibirExp (Sub e1 e2) = 
+    "( " ++ exibirExp e1 ++ " - " ++ exibirExp e2 ++ " )"
+
+data ListaInt = Vazia | Cons Int ListaInt deriving Show
+
+somaListaInt :: ListaInt -> Int
+somaListaInt (Vazia) = 0
+somaListaInt (Cons n l) = n + somaListaInt l
+-- *Main> somaListaInt (Cons 3 (Cons 4 ( Cons 5 Vazia)))
+-- 12
+
+-- Tipo algebrico polimorfico
+
+data Lista t = Nil | Const t (Lista t) deriving Show
+
+tamanho :: Lista t -> Int
+tamanho (Nil) = 0
+tamanho (Const _ l) = 1 + tamanho l
+-- *Main> tamanho (Const 1 Nil)
+-- 1
+-- *Main> tamanho Nil
+-- 0
+-- *Main> tamanho (Const 1 (Const 2 Nil))
+-- 2
+
+data Arvore t = NilArv | No (Arvore t) t (Arvore t)
+-- *Main> :t NilArv
+-- NilArv :: Arvore t
+
