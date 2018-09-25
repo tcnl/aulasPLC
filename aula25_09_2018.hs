@@ -55,4 +55,5 @@ instance Eq t => Eq (Arvore t) where
     Folha  == Folha = True
     (No n1 l1 l11) == (No n2 l2 l22) = 
         (n1 == n2) && (l1 == l2) && (l11 == l22)
+        
     
