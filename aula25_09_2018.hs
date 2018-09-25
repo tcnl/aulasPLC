@@ -34,16 +34,25 @@ class Visible t where
     toString :: t -> String
     size :: t-> Int
 
-    instance Visible Char where
-        toString ch = [ch]
-        size ch = 1
+instance Visible Char where
+    toString ch = [ch]
+    size ch = 1
 
-    instance Visible Bool where
-        toString True = "True"
-        toString False = "False"
-        size _ = 1
+instance Visible Bool where
+    toString True = "True"
+    toString False = "False"
+    size _ = 1
 
-    instance Visible t => [t] where
-        toString = concat . (map toString)
-        size = (map size)
+instance Visible t => Visible [t] where
+    toString = concat . (map toString)
+    -- size l = length l
+    -- size l = length . (map size)
+    -- size = (foldr (+) 0) . (map size)
+    size [] = 0
+    size (x:xs) = size x + size xs
+
+instance Eq t => Eq (Arvore t) where
+    Folha  == Folha = True
+    (No n1 l1 l11) == (No n2 l2 l22) = 
+        (n1 == n2) && (l1 == l2) && (l11 == l22)
     
