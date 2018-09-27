@@ -20,3 +20,9 @@ troca :: Integer -> a -> a -> a
 troca n x y
  | n > 0 = x
  | otherwise = y
+
+h :: Int -> Int -> Int
+h x y = x + y
+
+fk :: [Int] -> [Int] -> Int
+fk (x:xs) (y:ys) = x + ys
