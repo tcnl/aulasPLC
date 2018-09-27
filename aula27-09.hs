@@ -31,6 +31,8 @@ fatorial :: Int -> Int
 fatorial 0 = 1
 fatorial n = n * fatorial(n-1)
 
-tailFat :: Int -> Int -> Int
+tailFat :: Integer -> Integer -> Integer
 tailFat 0 x = x
 tailFat n x = tailFat(n-1) (n*x)
+
+fat n = tailFat n 1
