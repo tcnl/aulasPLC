@@ -25,4 +25,12 @@ h :: Int -> Int -> Int
 h x y = x + y
 
 fk :: [Int] -> [Int] -> Int
-fk (x:xs) (y:ys) = x + ys
+fk (x:xs) (y:ys) = x + y
+
+fatorial :: Int -> Int
+fatorial 0 = 1
+fatorial n = n * fatorial(n-1)
+
+tailFat :: Int -> Int -> Int
+tailFat 0 x = x
+tailFat n x = tailFat(n-1) (n*x)
