@@ -8,3 +8,15 @@ instance Show Pessoa where
 instance Eq Pessoa where
     (M n1) == (M n2) = n1 == n2
     (F n1) == (F n2) = n1 == n2
+    _ == _= False
+
+f :: Int -> Int -> Int
+f a b = a + 10
+
+g :: Int -> Int
+g x = x + g x
+
+troca :: Integer -> a -> a -> a
+troca n x y
+ | n > 0 = x
+ | otherwise = y
